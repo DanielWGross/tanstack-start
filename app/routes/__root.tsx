@@ -1,6 +1,7 @@
 import { createRootRoute } from "@tanstack/react-router";
 import { Outlet, ScrollRestoration } from "@tanstack/react-router";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
+import appCss from "../styles/app.css?url";
 import * as React from "react";
 
 export const Route = createRootRoute({
@@ -14,6 +15,13 @@ export const Route = createRootRoute({
     },
     {
       title: "TanStack Start Starter",
+    },
+  ],
+  links: () => [
+    { rel: "stylesheet", href: appCss },
+    {
+      rel: "stylesheet",
+      href: "https://rsms.me/inter/inter.css",
     },
   ],
   component: RootComponent,
@@ -34,9 +42,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <Meta />
       </Head>
       <Body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+        <div className="bg-slate-900 h-screen flex items-center gap-4">
+          <div className="flex-grow">
+            {children}
+            <ScrollRestoration />
+            <Scripts />
+          </div>
+        </div>
       </Body>
     </Html>
   );
